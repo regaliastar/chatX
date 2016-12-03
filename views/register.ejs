@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>chatX-register</title>
+    <link rel="stylesheet" type="text/css" href="css/room.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/starter-template.css">
+    
+  </head>
+ 
+  <body>
+    
+   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ChatX</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Register</a></li>
+      
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="starter-template">
+        <h1>请输入你的ID</h1>
+           <div class="idFormContainer">
+            <form class="userIdForm" role="form" method="POST" action="/chatX">
+            <div class="row starter-template">
+    
+              <div class="input-group col-lg-3 center ">
+               <input type="text" class=" form-control userId" name="userId" placeholder="please input your id" />
+               <span class="input-group-btn">
+                 <input type="submit" id="button" class="btn btn-default" value="提交" />
+               </span>
+              </div>  <!-- /input-group -->
+        
+            </div><!-- /.row -->
+            </form><!-- /.userIdForm -->
+            <div class="alert alert-dismisible">
+              <span style="display: none;" id="id_long">ID过长(不应超过十个字符)，请重新输入</span>
+            </div>
+            
+        
+        </div>
+      
+      </div>
+    </div><!-- /.container -->
+
+  </body>
+  <script src="javascripts/compute/jquery-3.1.1.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="javascripts/chat/register.js"></script>
+</html>

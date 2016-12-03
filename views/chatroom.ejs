@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatroom</title>
+   
+  </head>
+ 
+    <body>
+    
+        <!--***************-->
+        <div >ID:<span class="name"><%=id %></span></div>
+        <div id="chat-area" style="width:300px;height:400px;background-color:#eef;overflow-y:scroll">
+            <div class="messages">
+            </div>
+        </div>
+        <input type="text" class="inputMessage" placeholder="按回车键发送" />
+    </body>
+	  <script src="/socket.io/socket.io.js"></script>
+    <script src="javascripts/compute/jquery-3.1.1.js"></script>
+    <script src="javascripts/chat/chatroom.js"></script>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>不知道该取啥名的计算器</title>
+	<meta charset="utf-8">
+	<meta name="author" content="zl">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/form.css">
+	<script src="javascripts/compute/jquery-3.1.1.js"></script>
+	<script language = "javascript" src = "javascripts/compute/function.js"></script>
+	<style>
+
+</style>
+</head>
+<body>
+
+<div class="container">
+	<div class="card-panel">
+		<div class="section">
+		<section>
+			<h5><p id="title" >请输入表达式</p></h5>
+
+			<div class="divider"></div>
+			
+			 <div class="row">
+                  <div class="input-field co1 s12">
+                      <textarea id="exp" name="exp" class="materialize-textarea" placeholder="请输入表达式"></textarea>
+                  </div>
+                  <div class="col l5 m7 s1">
+                    <div class="row "></div>
+
+                    <label>任意数转 >></label><br>
+                    <div>
+                    <span id="two" style="width: 30%;display: inline-block;opacity: 0.9" class="btn btn-default smoothScroll gotobtn wow fadeInUp">二进制</span>
+                    <span id="o" style="width: 30%;display: inline-block;opacity: 0.9" class="btn btn-default smoothScroll gotobtn wow fadeInUp">八进制</span>
+                    <span id="0x" style="width: 30%;display: inline-block;opacity: 0.9" class="btn btn-default smoothScroll gotobtn wow fadeInUp">十六进制</span>
+                    </div>
+                    <p></p>
+        
+                    <label>选择计算模式</label><p></p>
+                    <select id="model" class="browser-default">
+                  	<option value="0">基本算数运算</option>
+                  	<option value="1">布尔运算</option>
+                  	<option value="2">js编程实现</option>
+                  </select>
+ 					<br>
+                  <div class="devider"></div>
+                  <input  class="btn btn-large waves-effect waves-light" type="button" id="btn" value="提  交"></input>                                                           
+		</div>
+	</div>
+					<form>
+                  	 <div class="row" id="answer_area"><br>
+                  		 <li class="row" id="postFix" style="display: none;">&nbsp &nbsp &nbsp &nbsp后缀表达式：</li>
+                  		<li class="row" id="answer" style="display: none;"> &nbsp &nbsp &nbsp &nbsp计算结果为：</li>
+                  	 </div>
+                  </form>
+        </section>
+        <section id="readme" class="panel">
+        <p> &nbsp</p>
+        <b> &nbsp</b>
+        <b> &nbsp</b>
+        <b> &nbsp</b>
+        <b> &nbsp</b>
+        <b> &nbsp</b>
+        <b> &nbsp</b>
+        <b> &nbsp</b>
+        <p> &nbsp</p>
+        <p> &nbsp</p>
+        <p> &nbsp</p>
+        <span class="blue-text">
+		<li><h6>&nbsp 支持小数、负数的运算</h6></li>
+			<p></p>
+			<li><h6>&nbsp 使用正则表达式检测是否输入了非法字符</h6></li>
+			<p></p>
+			<li><h6>&nbsp 任意数转换成其他进制功能</h6></li>
+			<p></p>
+			<li><h6>&nbsp 实现的操作：</h6></li>
+			 <div class="card-panel cyan darken-2">
+			 	<span class="white-text">
+			 		&nbsp &nbsp A)  基本算数运算：<br><p></p>
+			 		&nbsp &nbsp 加(+)、减(-)、乘(*)、除(/)<br>
+			 		&nbsp &nbsp 正弦(sin)、余弦(cos)、正切(tan)<br>
+			 		&nbsp &nbsp 绝对值(abs)、开根号(sqrt)、取自然对数(ln或log)<br>
+			 		<p></p>
+			 		&nbsp &nbsp B)  布尔运算:<br><p></p>
+			 		&nbsp &nbsp 与操作(&&或者&)、或操作(||或者|)、非操作(!或者~)<br>
+			 		&nbsp &nbsp 支持T或TRUE、F或FALSE输入，不区分大小写<br>
+			 		<p></p>
+			 		&nbsp &nbsp C)  js编程实现:<br><p></p>
+			 		&nbsp &nbsp 此功能为附加功能（彩蛋），让用户能够自己编写js代码，处理器将解释这些代码并实现它。<br>
+			 		&nbsp &nbsp 原理：运用了eval()函数
+			 		&nbsp &nbsp 效果如下：<p></p>
+			 		&nbsp &nbsp <img src="img/demo.PNG" width="350" height="420" /> 
+			 	</span>
+		</span>
+</section>
+<img src="img/back_to_top.png" class="backtotop" id="back_to_top">
+</div>
+<script type="text/javascript" src="javascripts/compute/control.js"></script>
+</body>
+</html>
