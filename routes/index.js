@@ -46,7 +46,7 @@ router.use('/chatX',function(req,res,next){
 		res.cookie('userId',''+userId, {maxAge:1*1000, path:'/', httpOnly:true});	
 	}
 	res.render('chatX',{id:""+userId});
-	console.log('entr chatX!');
+	
 })
 
 router.use('/:others',function(req,res,next){

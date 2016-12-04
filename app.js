@@ -5,11 +5,13 @@ var http = require('http');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
+var handlebars = require('express3-handlebars').create();
 var PORT = 8081;
 app = express();
 
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.engine('handlebars',handlebars.engine);
+app.set('view engine', 'handlebars');
 app.use(bodyParser());
 app.use(cookieParser('cookieSecret_saveinafile'));
 app.use(expressSession());
@@ -46,8 +48,8 @@ io.on('connection', function (socket) {
         }
         roomUser[roomid].push(user);
         socket.join(roomid);
-        socket.to(roomid).emit('sys', user + '加入了房间');  //sending to all clients in 'roomid' room(channel) except sender
-        socket.emit('sys',user + '加入了房间');      //sending to sender who send 'join' to the server
+        socket.to(roomid).emit('sys', user + ' 加入了房间');  //sending to all clients in 'roomid' room(channel) except sender
+        socket.emit('sys',user + ' 加入了房间');      //sending to sender who send 'join' to the server
     });
 
     // 监听来自客户端的消息
