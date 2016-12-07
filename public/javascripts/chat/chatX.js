@@ -4,27 +4,31 @@ $(function () {
 
     //取名字之后，一直进行socket.on状态，直到退出
     socket.on('connect', function () {
-        var name = $('.name').text();
+        var name = $('.user_name').text() || '匿名';
         socket.emit('join',name);
     })
+
     socket.on('sys', function (msg) {
-        $('.messages').prepend('<p>'+'►► '+msg+'</p>');
+        $('.messages').prepend('<div class="msg-system">'+'►► '+msg+'</div>');
         // 滚动条滚动到底部
         scrollTop();
     });
+    
     socket.on('new message', function (msg,user) {
         //$('.messages').prepend('<p>'+user+'说：'+msg+'</p>');
+        console.log('user:'+user);
+
         $('.messages').prepend(
-            '<dl class="talk tanaka-2x">'+
+            /*
+            '<dl class="talk kanra">'+
             '<dt class="dropdown">'+
-            '<div class="avatar avatar-tanaka-2x">'+
+            '<div class="avatar avatar-kanra"></div>'+
             '<div class="name" data-toggle="dropdown">'+
             '<span class="select-text">'+user+'</span>'+
             '</div>'+
-     
             '<ul class="dropdown-menu" role="menu"></ul>'+
             '</dt>'+
-            '<dd class="bounce">'+
+            '<dd>'+
             '<div class="bubble">'+
             '<div class="tail-wrap center" style="background-size: 65px auto;">'+
             '<div class="tail-mask"></div>'+
@@ -32,7 +36,19 @@ $(function () {
             '<p class="body select-text">'+msg+'</p>'+
             '</div>'+
             '</dd>'+
-            '</dl>');
+            '</dl>'
+            */
+            '<div class="msg-default">'+
+            '<div class="msg-user text-center">'+
+            '<div class="img-avatar emt"></div>'+
+            user+
+            '</div>'+
+            '<div class="msg-bubble bounce msg-bubble" >'+
+            msg+
+            '</div>'+
+            '</div>'
+            );
+           
         // 滚动条滚动到底部
         scrollTop();
     });

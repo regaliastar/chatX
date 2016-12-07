@@ -11,7 +11,7 @@ router.get('/register',function(req,res,next){
 		var userId = req.cookies.userId;
 		console.log('cookies get: '+userId+' '+new Date());
 		//res.render('chatroom',{id:""+userId});
-		res.redirect(303,'chatroom');
+		res.redirect(303,'chatX');
 	}else{
 		res.render('register');
 	}
@@ -40,7 +40,7 @@ router.get('/chatroom',function(req,res,next){
 })
 
 //it's only used to test UI
-router.use('/chatX',function(req,res,next){
+router.post('/chatX',function(req,res,next){
 	var userId = req.body.userId.trim() || '匿名';
 	if(!req.cookies.userId){
 		res.cookie('userId',''+userId, {maxAge:1*1000, path:'/', httpOnly:true});	
@@ -48,6 +48,16 @@ router.use('/chatX',function(req,res,next){
 	res.render('chatX',{id:""+userId});
 	
 })
+
+router.get('/chatX/:id',function(req,res,next){
+	/*var userId = req.body.userId.trim() || '匿名';
+	if(!req.cookies.userId){
+		res.cookie('userId',''+userId, {maxAge:1*1000, path:'/', httpOnly:true});	
+	}
+	res.render('chatX',{id:""+userId});*/
+	res.render('chatX',{id:'匿名'});
+})
+
 
 router.use('/:others',function(req,res,next){
 	res.send('hello!，你进错地方了哟');

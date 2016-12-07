@@ -35,8 +35,10 @@ io.on('connection', function (socket) {
 
     // 获取用户当前的url，从而截取出房间id
     var url = socket.request.headers.referer;
-    var split_arr = url.split('/')[1];
-    var roomid = split_arr.split('?')[0] || 'index';
+    //var split_arr = url.split('/')[1];
+    //var roomid = split_arr.split('?')[0] || 'index';
+    var split_arr = url.split('/');
+    var roomid = split_arr[split_arr.length-1] || 'index';
     //var roomid = 'chatroom';
     var user = '';
 
