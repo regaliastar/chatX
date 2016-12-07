@@ -2,9 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 //此处不能用post
-router.get('/compute',function(req,res,next){
-	res.render('compute');
-});
 
 router.get('/register',function(req,res,next){
 	if(req.cookies.userId){
@@ -17,7 +14,7 @@ router.get('/register',function(req,res,next){
 	}
 	
 })
-
+/*
 router.post('/chatroom',function(req,res,next){
 	var userId = req.body.userId.trim() || '匿名';				//得到post提交的表单信息
 	if(!req.cookies.userId){
@@ -38,7 +35,7 @@ router.get('/chatroom',function(req,res,next){
 	}
 	res.render('chatroom',{id:""+userId});
 })
-
+*/
 //it's only used to test UI
 router.post('/chatX',function(req,res,next){
 	var userId = req.body.userId.trim() || '匿名';
