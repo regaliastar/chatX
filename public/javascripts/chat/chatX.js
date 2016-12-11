@@ -43,7 +43,7 @@ $(function () {
             '<div class="img-avatar emt"></div>'+
             user+
             '</div>'+
-            '<div class="msg-bubble bounce msg-bubble" >'+
+            '<div class="msg-bubble bounce" >'+
             msg+
             '</div>'+
             '</div>'
@@ -61,9 +61,12 @@ $(function () {
 
     $('.inputMessage').on('keydown',function(evt){
         if(evt.which === 13){
-            var message = $(this).val();
-            if(!message || message.trim() == ''){
+            if(evt.shiftKey){
                 return;
+            }
+            var message = $(this).val();
+            if(message == ''){
+                evt.preventDefault();
             }
             socket.send(message);
             $(this).val('');
