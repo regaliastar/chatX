@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var handlebars = require('express3-handlebars').create();
 var PORT = 8081;
+var characters = require('./models/characters');
 app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -31,6 +32,7 @@ server.listen(PORT);
 var server = http.Server(app);
 var io = require('socket.io').listen(server);
 var roomUser = {};
+var roomAvator = {};
 io.on('connection', function (socket) {
 
     // 获取用户当前的url，从而截取出房间id
@@ -40,28 +42,47 @@ io.on('connection', function (socket) {
     var split_arr = url.split('/');
     var roomid = split_arr[split_arr.length-1] || 'index';
     //var roomid = 'chatroom';
-    var user = '';
+    var user;
+    var avator;
 
-    socket.on('join', function (username) {
-         user = username;
+    socket.on('join', function (username,useravator) {
+        user = username;
+        avator = useravator;
+        var newAvator = useravator;
         // 将用户归类到房间
         if (!roomUser[roomid]) {
             roomUser[roomid] = [];
         }
+        if(!roomAvator[roomid]) {
+            roomAvator[roomid] = [];
+        }
+
+        if(roomAvator[roomid].indexOf(avator) !== -1){
+            newAvator = characters.getOther(roomAvator[roomid]);
+            console.log('newAvator is:'+newAvator);
+            avator = newAvator;
+            roomAvator[roomid].push(newAvator);
+        }else{
+            roomAvator[roomid].push(avator);
+        }
+        
+
         roomUser[roomid].push(user);
         socket.join(roomid);
         socket.to(roomid).emit('sys', user + ' 加入了房间');  //sending to all clients in 'roomid' room(channel) except sender
         socket.emit('sys',user + ' 加入了房间');      //sending to sender who send 'join' to the server
+        socket.emit('avator',newAvator);
     });
 
     // 监听来自客户端的消息
-    socket.on('message', function (msg) {
+    socket.on('message', function (msg,avator) {
         // 验证如果用户不在房间内则不给发送
         if (roomUser[roomid].indexOf(user)< 0) {  
           return false;
         }
-        socket.to(roomid).emit('new message', msg,user);
-        socket.emit('new message', msg,user);
+        
+        socket.to(roomid).emit('new message', msg,user,avator);
+        socket.emit('new message', msg,user,avator);
     });
 
     // 关闭
@@ -72,6 +93,11 @@ io.on('connection', function (socket) {
                 log.error(err);
             } else {
                 var index = roomUser[roomid].indexOf(user);
+                var avaIndex = roomAvator[roomid].indexOf(avator);
+                if(avaIndex !== -1){
+                    roomAvator[roomid].splice(avaIndex,1);
+                }
+
                 if (index !== -1) {
                     roomUser[roomid].splice(index, 1);
                     socket.to(roomid).emit('sys',user+'退出了房间');

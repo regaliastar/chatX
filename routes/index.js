@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-
+var characters = require('./../models/characters');
 //此处不能用post
+
 
 router.get('/register',function(req,res,next){
 	if(req.cookies.userId){
@@ -39,10 +40,15 @@ router.get('/chatroom',function(req,res,next){
 //it's only used to test UI
 router.post('/chatX',function(req,res,next){
 	var userId = req.body.userId.trim() || '匿名';
+	var userAvator = characters.getCharacter();
+	console.log('userAvator:'+userAvator);
+	req.session.username = userId;
+    req.session.avator = characters.getCharacter();
+
 	if(!req.cookies.userId){
 		res.cookie('userId',''+userId, {maxAge:1*1000, path:'/', httpOnly:true});	
 	}
-	res.render('chatX',{id:""+userId});
+	res.render('chatX',{id:""+userId,avator:""+userAvator});
 	
 })
 

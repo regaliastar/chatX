@@ -11,6 +11,30 @@
    no-repeat scroll center top / 58px 58px;
 }
 
+.eru{
+   background: transparent
+   url("../images/avatars/eru.png")
+   no-repeat scroll center top / 58px 58px;
+}
+
+.kakashi{
+   background: transparent
+   url("../images/avatars/kakashi.png")
+   no-repeat scroll center top / 58px 58px;
+}
+
+.kirito{
+   background: transparent
+   url("../images/avatars/kirito.png")
+   no-repeat scroll center top / 58px 58px;
+}
+
+.a{
+   background: transparent
+   url("../images/avatars/a.png")
+   no-repeat scroll center top / 58px 58px;  
+}
+
 .hide{
     display: none;
 }
@@ -20,6 +44,3 @@
     rgb(172, 148, 197) 50%, rgb(136, 102, 172) 50%) repeat scroll 0% 0%; 
     color: rgb(255, 255, 255);
 }
-//以下为复制粘贴
-
-//---------------------干脆全部复制得了

@@ -1,11 +1,14 @@
 $(function () {
     // 默认链接到渲染页面的服务器
     var socket = io();
-
+    var avator;
     //取名字之后，一直进行socket.on状态，直到退出
     socket.on('connect', function () {
         var name = $('.user_name').text() || '匿名';
-        socket.emit('join',name);
+        avator = $('.avator').text().trim();
+        console.log('avator in connect is :'+avator)
+  
+        socket.emit('join',name,avator);
     })
 
     socket.on('sys', function (msg) {
@@ -14,33 +17,19 @@ $(function () {
         scrollTop();
     });
     
-    socket.on('new message', function (msg,user) {
-        //$('.messages').prepend('<p>'+user+'说：'+msg+'</p>');
-        console.log('user:'+user);
+    socket.on('avator',function(ava){
+        avator = ava;
+        console.log('receive avator:'+ava);
+    })
 
+    socket.on('new message', function (msg,user,avator) {
+        //$('.messages').prepend('<p>'+user+'说：'+msg+'</p>');
+        console.log('user in new message:'+user);
+        console.log('avator in new message:'+avator);
         $('.messages').prepend(
-            /*
-            '<dl class="talk kanra">'+
-            '<dt class="dropdown">'+
-            '<div class="avatar avatar-kanra"></div>'+
-            '<div class="name" data-toggle="dropdown">'+
-            '<span class="select-text">'+user+'</span>'+
-            '</div>'+
-            '<ul class="dropdown-menu" role="menu"></ul>'+
-            '</dt>'+
-            '<dd>'+
-            '<div class="bubble">'+
-            '<div class="tail-wrap center" style="background-size: 65px auto;">'+
-            '<div class="tail-mask"></div>'+
-            '</div>'+
-            '<p class="body select-text">'+msg+'</p>'+
-            '</div>'+
-            '</dd>'+
-            '</dl>'
-            */
             '<div class="msg-default">'+
             '<div class="msg-user text-center">'+
-            '<div class="img-avatar emt"></div>'+
+            '<div class="img-avatar '+avator+'"></div>'+
             user+
             '</div>'+
             '<div class="msg-bubble bounce" >'+
@@ -55,7 +44,7 @@ $(function () {
 
     $('#post').on('click',function(evt){
         var message = $('.inputMessage').val();
-        socket.send(message);
+        socket.send(message,avator);
         $('.inputMessage').val('');
     })
 
@@ -68,7 +57,7 @@ $(function () {
             if(message == ''){
                 evt.preventDefault();
             }
-            socket.send(message);
+            socket.send(message,avator);
             $(this).val('');
         }
     })
