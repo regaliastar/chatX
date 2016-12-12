@@ -6,7 +6,7 @@ $(document).ready(function(){
 		var container = $(this).closest('.idFormContainer');
 		var length = $('.userId').val().trim().length;
 
-		if(length > 10){
+		if(length > 5){
 			evt.preventDefault();	//防止提交事件发生
 			$('#id_long').slideDown();
 		}

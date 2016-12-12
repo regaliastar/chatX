@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var handlebars = require('express3-handlebars').create();
-var PORT = 8081;
+var PORT = 80;
 var characters = require('./models/characters');
 app = express();
 

@@ -62,8 +62,8 @@ router.get('/chatX/:id',function(req,res,next){
 })
 
 
-router.use('/:others',function(req,res,next){
-	res.send('hello!，你进错地方了哟');
+router.use('/',function(req,res,next){
+	res.redirect(303,'register');
 });
 
 module.exports = router;
