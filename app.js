@@ -33,6 +33,8 @@ var server = http.Server(app);
 var io = require('socket.io').listen(server);
 var roomUser = {};
 var roomAvator = {};
+
+
 io.on('connection', function (socket) {
 
     // 获取用户当前的url，从而截取出房间id
@@ -46,6 +48,7 @@ io.on('connection', function (socket) {
     var avator;
 
     socket.on('join', function (username,useravator) {
+
         user = username;
         avator = useravator;
         var newAvator = useravator;
@@ -72,6 +75,10 @@ io.on('connection', function (socket) {
         socket.to(roomid).emit('sys', user + ' 加入了房间');  //sending to all clients in 'roomid' room(channel) except sender
         socket.emit('sys',user + ' 加入了房间');      //sending to sender who send 'join' to the server
         socket.emit('avator',newAvator);
+       
+        socket.to(roomid).emit('user_join',user);
+        //socket.emit('user_join',user);
+        socket.emit('user_first_join',roomUser[roomid]);
     });
 
     // 监听来自客户端的消息
@@ -79,6 +86,10 @@ io.on('connection', function (socket) {
         // 验证如果用户不在房间内则不给发送
         if (roomUser[roomid].indexOf(user)< 0) {  
           return false;
+        }
+
+        if(msg.indexOf('@') !== -1){
+          
         }
         
         socket.to(roomid).emit('new message', msg,user,avator);
@@ -101,6 +112,7 @@ io.on('connection', function (socket) {
                 if (index !== -1) {
                     roomUser[roomid].splice(index, 1);
                     socket.to(roomid).emit('sys',user+'退出了房间');
+                    socket.to(roomid).emit('leave',user);
                 } 
             }
         });

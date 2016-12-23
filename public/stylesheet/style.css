@@ -99,12 +99,6 @@ div.message_box h2 {
     float: left;
 }
 
-div.message_box_inner {
-    position: relative;
-    width: 580px;
-    left: 50%;
-    margin-left: -290px;
-}
 
 ul.menu {
     display: block;
@@ -164,30 +158,6 @@ ul.menu li.animation_off {
     background: transparent url('../images/animation_off.png') left top no-repeat;
 }
 
-#setting_pannel {
-    clear: both;
-    padding: 20px 0;
-}
-
-#setting_pannel ul#user_list {
-    list-style: none;
-}
-
-#setting_pannel ul#user_list li {
-    min-height: 20px;
-    width: 80px;
-    padding-top: 60px;
-    text-align: center;
-    display: block;
-    float: left;
-    line-height: 20px;
-    border: 2px solid transparent;
-    margin: 10px;
-}
-
-#setting_pannel ul#user_list li.select {
-    border: 2px solid #ff6600;
-}
 
 #message {
     text-align: center;
@@ -279,62 +249,6 @@ ul.menu li.animation_off {
     -position: relative;
 }
 
-#talks dl.setton dt {
-    background: transparent url('../images/icon_setton.png') no-repeat center top;
-}
-
-#talks dl.setton dd div.bubble p.body {
-    background: transparent url('../images/gray.png') repeat-x left center;
-}
-
-#talks dl.tanaka dt {
-    background: transparent url('../images/icon_tanaka.png') no-repeat center top;
-}
-
-#talks dl.tanaka dd div.bubble p.body {
-    background: transparent url('../images/blue.png') repeat-x left center;
-}
-
-#talks dl.kanra dt {
-    background: transparent url('../images/icon_kanra.png') no-repeat center top;
-}
-
-#talks dl.kanra dd div.bubble p.body {
-    background: transparent url('../images/orange.png') repeat-x left center;
-}
-
-#talks dl.zaika dt {
-    background: transparent url('../images/icon_zaika.png') no-repeat center top;
-}
-
-#talks dl.zawa dd div.bubble p.body {
-    background: transparent url('../images/green.png') repeat-x left center;
-}
-
-#talks dl.zawa dt {
-    background: transparent url('../images/icon_zawa.png') no-repeat center top;
-}
-
-#talks dl.zaika dd div.bubble p.body {
-    background: transparent url('../images/red.png') repeat-x left center;
-}
-
-#talks dl.gg dt {
-    background: transparent url('../images/icon_gg.png') no-repeat center top;
-}
-
-#talks dl.gg dd div.bubble p.body {
-    background: transparent url('../images/pink.png') repeat-x left center;
-}
-
-#talks dl.admin dt {
-    background: transparent url('../images/icon_admin.png') no-repeat center top;
-}
-
-#talks dl.admin dd div.bubble p.body {
-    background: transparent url('../images/orange.png') repeat-x left center;
-}
-
 #login {
     min-height: 100px;
 }
@@ -422,14 +336,6 @@ ul#profile li.icon {
     margin-left: 15px;
 }
 
-ul#profile li.name {
-    min-width: 50px;
-    color: #fff;
-    font-size: 20px;
-    text-align: left;
-    line-height: 60px;
-    padding: 0 15px
-}
 
 ul#profile li.logout {
     float: right;
@@ -448,11 +354,6 @@ ul.rooms li {
     text-align: center;
     float: left;
     padding: 8px 0;
-}
-
-ul.rooms li.name {
-    width: 180px;
-    text-align: left;
 }
 
 ul.rooms li.creater {

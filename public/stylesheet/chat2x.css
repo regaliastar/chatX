@@ -91,6 +91,7 @@ a, a:hover, a:active, a:visited{
 }
 
 .container.box-chat {
+    /*padding-top: 125px;*/
     padding-top: 125px;
     color: #ffffff;
 }

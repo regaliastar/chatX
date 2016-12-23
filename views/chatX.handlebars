@@ -9,36 +9,35 @@
 	<link rel="stylesheet" type="text/css" href="../stylesheet/style.css">
 	<link rel="stylesheet" type="text/css" href="../css/room.css">
 </head>
-<!--
-<body class="avgrund-ready">
-	<div class="container" style="background: yellow">
-		<div class="row box-message">
-			<div class="col-md-6 col-md-offset-3 text-center">
-				<div class="box-message-inner">
-					<textarea class="inputMessage " v-model="message" v-on:input="at"></textarea>
-					<button id="post">POST!</button>
+<body>
+
+<div style="">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container avgrund-blur">
+			<div class="row box-message">
+				<div class="col-md-6 col-md-offset-3 text-center">
+					<div class="box-message-inner">
+						<textarea class="inputMessage "></textarea>
+						<button id="post">POST!</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	-->
-	<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container avgrund-blur">
-	<div class="row box-message">
-	<div class="col-md-6 col-md-offset-3 text-center">
-	<div class="box-message-inner">
-	<textarea class="inputMessage "></textarea>
-	<button id="post">POST!</button>
-	</div>
-	</div>
-	</div>
-	</div>
 	</nav>
+
+
+
+</div>
 	<!--**************-->
 	
     <!--**************-->
+<div style="position: relative;">
+    <div id="setting_pannel" style="position:absolute; display: inline-block;margin-top: 125px" >
+        <ul id="user_list" class="user-list" ></ul>
+    </div>
 
-	<div class="container box-chat avgrund-blur">
+	<div class="container box-chat avgrund-blur" style="">
+
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2 box-talks">
 				<div class="messages ">
@@ -50,10 +49,9 @@
 			</div>
 		</div>
 	</div>
-
+</div>
 </body>
 	<script src="/socket.io/socket.io.js"></script>
     
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="../javascripts/chat/chatX.js"></script>
 </html>

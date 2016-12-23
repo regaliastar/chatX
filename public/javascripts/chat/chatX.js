@@ -6,9 +6,47 @@ $(function () {
     socket.on('connect', function () {
         var name = $('.user_name').text() || '匿名';
         avator = $('.avator').text().trim();
-        console.log('avator in connect is :'+avator)
-  
+        console.log('avator in connect is :'+avator);
+        
         socket.emit('join',name,avator);
+    })
+
+    socket.on('user_first_join',function(userlist){
+        for(var i=0;i<userlist.length;i++){
+
+            $('#user_list').append(
+               '<li id="'+userlist[i]+'" class="dropdown clearfix symbol-tanaka-2x" device="desktop" style="color: black;background: #545454;border:1px dotted black">'+
+                   ' <ul id="'+userlist[i]+'" class="dropdown-menu" role="menu" ></ul>'+
+                    '<div id="'+userlist[i]+'" class="name-wrap" data-toggle="dropdown" >'+
+                    '<span id="'+userlist[i]+'" class="select-text name" >'+userlist[i]+'</span>'+
+                    '</div>'+
+                    '<span id="'+userlist[i]+'" class="icon-display icon-device"></span>'+
+                    '<span id="'+userlist[i]+'" class="icon icon-users"></span>'+
+                '</li>'
+                );
+        }
+    })
+
+    socket.on('user_join',function(user){
+        console.log(user+'加入了房间-user_join接收');
+        //将用户添加到面板
+
+
+        $('#user_list').append(
+               '<li id="'+user+'" class="dropdown clearfix symbol-tanaka-2x" device="desktop" style="color: black;background: #545454">'+
+                   ' <ul id="'+userlist[i]+'" class="dropdown-menu" role="menu" ></ul>'+
+                    '<div id="'+userlist[i]+'" class="name-wrap" data-toggle="dropdown" >'+
+                    '<span id="'+userlist[i]+'" class="select-text name" >'+user+'</span>'+
+                    '</div>'+
+                    '<span id="'+userlist[i]+'" class="icon-display icon-device"></span>'+
+                    '<span id="'+userlist[i]+'" class="icon icon-users"></span>'+
+                '</li>'
+                );
+    });
+
+    socket.on('leave',function(user){
+        console.log(user+' 离开了房间-leave');
+        $('#'+user).remove();
     })
 
     socket.on('sys', function (msg) {
@@ -20,7 +58,7 @@ $(function () {
     socket.on('avator',function(ava){
         avator = ava;
         console.log('receive avator:'+ava);
-    })
+    });
 
     socket.on('new message', function (msg,user,avator) {
         //$('.messages').prepend('<p>'+user+'说：'+msg+'</p>');
@@ -46,6 +84,14 @@ $(function () {
         var message = $('.inputMessage').val();
         socket.send(message,avator);
         $('.inputMessage').val('');
+    })
+
+    $('#setting_pannel').on('click',function(evt){
+        var target = evt.target.getAttribute('id');
+        if(target === null) return;
+        var at = $('.inputMessage').val() + '@' + target+' ';
+        $('.inputMessage').val(at);
+
     })
 
     $('.inputMessage').on('keydown',function(evt){

@@ -44,3 +44,178 @@
     rgb(172, 148, 197) 50%, rgb(136, 102, 172) 50%) repeat scroll 0% 0%; 
     color: rgb(255, 255, 255);
 }
+
+/*以下为用户面板*/
+
+.user-list .name-wrap {
+    float: left;
+    width: calc(100% - 36px);
+}
+
+.notification-bar .pp-form, .panel-hide {
+    display: none;
+}
+
+ .dropdown-menu {
+    float: left;
+}
+
+.collapsing, .dropdown, .dropup {
+    position: relative;
+}
+
+#setting_pannel .user-list > li.is-host .icon-users {
+    display: inline-block;
+    
+}
+
+#setting_pannel .user-list > li.is-tripcode {
+    color: #f0c267;
+}
+
+#setting_pannel, .btn-group-vertical > .btn-group::after, .btn-toolbar::after, .clearfix::after, .container-fluid::after, .container::after, .dl-horizontal dd::after, .form-horizontal .form-group::after, .modal-footer::after, .modal-header::after, .nav::after, .row::after, .talk::after, .wrap {
+    clear: both;
+}
+
+.btn-group-vertical > .btn-group::after, .btn-group-vertical > .btn-group::before, .btn-toolbar::after, .btn-toolbar::before, .clearfix::after, .clearfix::before, .container-fluid::after, .container-fluid::before, .container::after, .container::before, .dl-horizontal dd::after, .dl-horizontal dd::before, .form-horizontal .form-group::after, .form-horizontal .form-group::before, .modal-footer::after, .modal-footer::before, .modal-header::after, .modal-header::before, .nav::after, .nav::before, .row::after, .row::before {
+    content: " ";
+    display: table;
+}
+
+.name-wrap .symbol, .talk .symbol, .to-whom .symbol {
+    box-shadow: 0 0 0 1px #fff;
+}
+
+.name-wrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.user-list .name-wrap {
+    float: left;
+    width: calc(100% - 36px);
+}
+
+.name-wrap .symbol {
+    display: inline-block;
+    height: 8px;
+    margin-left: 1px;
+    margin-right: 4px;
+    vertical-align: 1px;
+    width: 8px;
+}
+
+#setting_pannel .user-list > li.dead .name-wrap {
+    text-decoration: line-through double;
+}
+#room_name > span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.select-text {
+    -moz-user-select: text;
+}
+
+#musicShelf .musicList .musicItem .name {
+    cursor: default;
+    display: inline-block;
+    float: left;
+    max-width: calc(100% - 100px);
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.symbol-tanaka-2x {
+    background: #1d7abb none repeat scroll 0 0;
+}
+
+div.message_box_inner {
+    margin: 0 auto;
+    width: 580px;
+}
+
+#setting_pannel .user-list {
+    list-style: outside none none;
+    margin: 0;
+    padding: 5px 0;
+}
+
+#setting_pannel .user-list > li {
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    padding: 2px 8px;
+    width: 200px;
+}
+
+#setting_pannel .user-list > li .avatar {
+    background-size: 20px 20px;
+    display: inline-block;
+    height: 20px;
+    vertical-align: -4px;
+    width: 20px;
+}
+
+#setting_pannel .user-list > li .icon {
+    display: none;
+    float: right;
+}
+#setting_pannel .user-list > li.is-tripcode {
+    color: #f0c267;
+}
+
+.symbol-tanaka-2x {
+    background: #1d7abb none repeat scroll 0 0;
+}
+
+.select-text {
+    -moz-user-select: text;
+}
+
+#setting_pannel .user-list > li[device="desktop"] .icon-device::before {
+    content: "";
+    display: inline-block;
+    font-family: ui-icon;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: inherit;
+}
+[class*=" icon-"]::before, [class^="icon-"]::before {
+    display: inline-block;
+    font-family: ui-icon;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: inherit;
+    text-rendering: auto;
+    text-transform: none;
+    vertical-align: middle;
+}
+[class*=" icon-"]::before, [class^="icon-"]::before {
+    display: inline-block;
+    font-family: ui-icon;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: inherit;
+    text-rendering: auto;
+    text-transform: none;
+    vertical-align: middle;
+}
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+#setting_pannel .user-list > li .icon-device {
+    float: right;
+    margin-left: 2px;
+}
+*, *::after, *::before {
+    box-sizing: border-box;
+}
