@@ -11,7 +11,8 @@ $(function () {
         socket.emit('join',name,avator);
     })
 
-    socket.on('user_first_join',function(userlist){
+    //生成用户列表
+    socket.on('user_first_join',function(userlist,historyMsg){
         for(var i=0;i<userlist.length;i++){
 
             $('#user_list').append(
@@ -25,6 +26,29 @@ $(function () {
                 '</li>'
                 );
         }
+
+        if(historyMsg !== null){
+            //添加历史记录
+            console.log("打印了historyMsg");
+            for(var o in historyMsg){
+            $('.messages').prepend(
+            '<div class="msg-default">'+
+            '<div class="msg-user text-center">'+
+            '<div class="img-avatar '+historyMsg[o].avator+'"></div>'+
+            historyMsg[o].user+
+            '</div>'+
+            '<div class="msg-bubble bounce" >'+
+            historyMsg[o].msg+
+            '</div>'+
+            '</div>'
+            );
+           
+        // 滚动条滚动到底部
+        scrollTop();
+        }
+        }
+
+
     })
 
     socket.on('user_join',function(user){
@@ -34,12 +58,12 @@ $(function () {
 
         $('#user_list').append(
                '<li id="'+user+'" class="dropdown clearfix symbol-tanaka-2x" device="desktop" style="color: black;background: #545454">'+
-                   ' <ul id="'+userlist[i]+'" class="dropdown-menu" role="menu" ></ul>'+
-                    '<div id="'+userlist[i]+'" class="name-wrap" data-toggle="dropdown" >'+
-                    '<span id="'+userlist[i]+'" class="select-text name" >'+user+'</span>'+
+                   ' <ul id="'+user+'" class="dropdown-menu" role="menu" ></ul>'+
+                    '<div id="'+user+'" class="name-wrap" data-toggle="dropdown" >'+
+                    '<span id="'+user+'" class="select-text name" >'+user+'</span>'+
                     '</div>'+
-                    '<span id="'+userlist[i]+'" class="icon-display icon-device"></span>'+
-                    '<span id="'+userlist[i]+'" class="icon icon-users"></span>'+
+                    '<span id="'+user+'" class="icon-display icon-device"></span>'+
+                    '<span id="'+user+'" class="icon icon-users"></span>'+
                 '</li>'
                 );
     });

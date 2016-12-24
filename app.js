@@ -8,6 +8,18 @@ var expressSession = require('express-session');
 var handlebars = require('express3-handlebars').create();
 var PORT = 80;
 var characters = require('./models/characters');
+var History = require('./models/history');
+var async = require('async');
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+  console.log("数据库成功开启");
+});
+
+
 app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -73,12 +85,49 @@ io.on('connection', function (socket) {
         roomUser[roomid].push(user);
         socket.join(roomid);
         socket.to(roomid).emit('sys', user + ' 加入了房间');  //sending to all clients in 'roomid' room(channel) except sender
-        socket.emit('sys',user + ' 加入了房间');      //sending to sender who send 'join' to the server
+        
         socket.emit('avator',newAvator);
        
         socket.to(roomid).emit('user_join',user);
         //socket.emit('user_join',user);
-        socket.emit('user_first_join',roomUser[roomid]);
+        var historyMsg = [] ;
+        History.find({available:true},function(err,historys){
+            console.log('History.find start');
+         
+            historys.map(function(history){
+                var row = {user:history.user,avator:history.avator,msg:history.msg};
+                historyMsg.push(row);
+            })
+
+
+            async.series([
+                function(callback){
+                    socket.emit('user_first_join',roomUser[roomid],historyMsg);
+                    //console.log('History.find end')       
+                callback(null, 'one');
+                },
+                function(callback){
+                    socket.emit('sys',user + ' 加入了房间'); 
+                    //console.log('async.series 第二次执行了');
+                callback(null, 'two');
+                }
+                ],function(err,values){
+                console.log('async.series error happen! ');
+            });
+            //socket.emit('user_first_join',roomUser[roomid],historyMsg);
+            //console.log('History.find end');
+            //socket.emit('sys',user + ' 加入了房间');      //sending to sender who send 'join' to the server
+        });
+        //因为异步执行，会导致先执行下面的for循环再执行History.find，导致传递的时候historyMsg还是空的！
+        /*console.log('for 循环打印historyMsg.historys:');
+        for(var o in historyMsg){
+           
+            console.log('o.user:'+o.user);
+            console.log('o.msg:'+o.msg);
+        }
+        console.log('for 循环打印historyMsg.historys 打印完成！');
+
+        socket.emit('user_first_join',roomUser[roomid],historyMsg);*/
     });
 
     // 监听来自客户端的消息
@@ -91,7 +140,15 @@ io.on('connection', function (socket) {
         if(msg.indexOf('@') !== -1){
           
         }
-        
+        //将数据保存在数据库
+        new History({
+            user:user,
+            avator:avator,
+            msg:msg,
+            date:Date.now(),
+            available:true
+        }).save();
+
         socket.to(roomid).emit('new message', msg,user,avator);
         socket.emit('new message', msg,user,avator);
     });
