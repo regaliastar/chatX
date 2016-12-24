@@ -5,7 +5,8 @@ var hisySchema = mongoose.Schema({
 	avator:String,
 	msg:String,
 	date:Date,
-	available:Boolean
+	available:Boolean,
+	issys:Boolean
 });
 
 var History = mongoose.model('History',hisySchema);

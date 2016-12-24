@@ -31,18 +31,21 @@ $(function () {
             //添加历史记录
             console.log("打印了historyMsg");
             for(var o in historyMsg){
-            $('.messages').prepend(
-            '<div class="msg-default">'+
-            '<div class="msg-user text-center">'+
-            '<div class="img-avatar '+historyMsg[o].avator+'"></div>'+
-            historyMsg[o].user+
-            '</div>'+
-            '<div class="msg-bubble bounce" >'+
-            historyMsg[o].msg+
-            '</div>'+
-            '</div>'
+                if(historyMsg[o].issys){
+                    $('.messages').prepend('<div class="msg-system">'+'►► '+historyMsg[o].msg+'</div>');
+                }else{
+                    $('.messages').prepend(
+                    '<div class="msg-default">'+
+                    '<div class="msg-user text-center">'+
+                    '<div class="img-avatar '+historyMsg[o].avator+'"></div>'+
+                    historyMsg[o].user+
+                    '</div>'+
+                    '<div class="msg-bubble bounce" >'+
+                    historyMsg[o].msg+
+                    '</div>'+
+                    '</div>'
             );
-           
+           }
         // 滚动条滚动到底部
         scrollTop();
         }

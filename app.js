@@ -95,8 +95,12 @@ io.on('connection', function (socket) {
             console.log('History.find start');
          
             historys.map(function(history){
-                var row = {user:history.user,avator:history.avator,msg:history.msg};
-                historyMsg.push(row);
+                var row = {user:history.user,avator:history.avator,msg:history.msg,issys:history.issys};
+                if((Date.now()-history.date)/1000 > 60*60){   //如果数据库的数据保存超过了500秒，删除之
+                    history.remove();
+                }else{
+                    historyMsg.push(row);
+                }
             })
 
 
@@ -107,6 +111,14 @@ io.on('connection', function (socket) {
                 callback(null, 'one');
                 },
                 function(callback){
+                    new History({
+                            user:user,
+                            avator:null,
+                            msg:user + ' 加入了房间',
+                            date:Date.now(),
+                            available:true,
+                            issys:true
+                        }).save();
                     socket.emit('sys',user + ' 加入了房间'); 
                     //console.log('async.series 第二次执行了');
                 callback(null, 'two');
@@ -146,7 +158,8 @@ io.on('connection', function (socket) {
             avator:avator,
             msg:msg,
             date:Date.now(),
-            available:true
+            available:true,
+            issys:false
         }).save();
 
         socket.to(roomid).emit('new message', msg,user,avator);
@@ -168,6 +181,14 @@ io.on('connection', function (socket) {
 
                 if (index !== -1) {
                     roomUser[roomid].splice(index, 1);
+                        new History({
+                            user:user,
+                            avator:null,
+                            msg:user+'退出了房间',
+                            date:Date.now(),
+                            available:true,
+                            issys:true
+                        }).save();
                     socket.to(roomid).emit('sys',user+'退出了房间');
                     socket.to(roomid).emit('leave',user);
                 } 
